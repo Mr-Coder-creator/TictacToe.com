@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<title>Tic Tac Toe Game</title>
+	<style>
+		body{
+			display: flex;
+			justify-content: center;
+			background-color: lightgreen;
+			width: 100%;
+			
+			text-align: center;
+			
+		}
+		#div1,#div2,#div3,#div4,#div5,#div6,#div7,#div8,#div9 {
+			width: 100px;
+			border: 1px solid black;
+			height: 80px;
+			float: left;
+			cursor: pointer;
+			font-size: 45px;
+			
+			
+		}
+		#div1,#div4,#div7{
+			clear: left;
+			border-left: none;
+			
+
+		}
+		#div3,#div6,#div9 {
+border-right: none;
+		}
+		#div1 , #div2,#div3{
+			border-top: none;
+		}
+		#div7 , #div8,#div9{
+			border-bottom: none;
+		}
+		
+button {
+position: absolute;
+bottom: 145px;
+left: 50%;
+
+background-color:deepskyblue;
+border-radius: 5px;
+color: white;width: 95px;
+        height: 60px;
+        border: 1px solid dodgerblue;
+        margin: auto;
+        
+        font-family: Verdana, 
+            Geneva, Tahoma, sans-serif;
+  
+        background-color: dodgerblue;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        transform: translate(-50%);
+
+}
+
+#demo {
+position: absolute;
+bottom: 37px;
+left: 50%;font-size: 25px;
+	padding: 14px;
+color: green;
+transform: translate(-50%);
+	}
+
+
+	</style>
+
+
+</head>
+<body>
+<div class="container">
+	<h2 style="color:dodgerblue;font-weight: normal;padding: 14px; margin-left: 22px;
+	">Tic Tac Toe</h2>
+	<h4 style="color:gray;">Player one is X & Player two is 0.</h4>
+	
+	<div id="div1" onclick="fill(this)"></div>
+	<div id="div2" onclick="fill(this)"></div>
+	<div id="div3" onclick="fill(this)"></div>
+	<div id="div4" onclick="fill(this)"></div>
+	<div id="div5" onclick="fill(this)"></div>
+	<div id="div6" onclick="fill(this)"></div>
+	<div id="div7" onclick="fill(this)"></div>
+	<div id="div8" onclick="fill(this)"></div>
+	<div id="div9" onclick="fill(this)"></div>
+
+</div>
+
+
+	
+
+
+<center>
+	<p id="demo"></p>
+	<button onclick="reset()">Start again</button>
+</center>
+</body>
+<script>
+	var counter = 1;
+	b1 = document.getElementById("div1");
+	b2 = document.getElementById("div2");
+	b3 = document.getElementById("div3");
+	b4 = document.getElementById("div4");
+	b5= document.getElementById("div5");
+	b6 = document.getElementById("div6");
+	b7 = document.getElementById("div7");
+	b8 = document.getElementById("div8");
+	b9 = document.getElementById("div9");
+	function fill(control) {
+if(counter<=9) {
+
+		if(counter%2!=0)
+		{
+		var ex =  document.getElementById(control.id).innerHTML = "X";
+		var x =document.getElementById("demo").innerHTML = "Player 0 turns.";
+		
+
+		}
+		else {
+			var o = document.getElementById(control.id).innerHTML = "0";var y =document.getElementById("demo").innerHTML = "Player X turns."
+		}
+		counter++;
+		if(checkmatch()) {
+			alert("X is winner");document.getElementById("demo").innerHTML  = "X is winner";
+			
+		}
+else if(zerocheck()) {
+	alert("0 is winner");
+	document.getElementById("demo").innerHTML  = "0 is winner";
+	
+}
+	}
+	else {
+		alert("Match drawn");
+		document.getElementById("demo").innerHTML  = "Match drawn start again!";
+
+	}
+
+}
+	
+
+	function reset() {
+		for( var i=1; i<=9; i++) {
+document.getElementById("div"+ i).innerHTML = "";
+counter = 1;
+}
+document.getElementById("demo").innerHTML = ""	
+}
+function checkmatch() {
+		if(b1.innerHTML!= "" && b2.innerHTML!= "" && b3.innerHTML!= "" && b1.innerHTML == "X" && b2.innerHTML == "X" && b3.innerHTML == "X" || b4.innerHTML!= "" && b5.innerHTML!= "" && b6.innerHTML!= "" && b4.innerHTML == "X" && b5.innerHTML == "X" && b6.innerHTML == "X" || b7.innerHTML!= "" && b8.innerHTML!= "" && b9.innerHTML!= "" && b7.innerHTML == "X" && b8.innerHTML == "X" && b9.innerHTML == "X" || b1.innerHTML == "X" && b5.innerHTML == "X" && b9.innerHTML == "X" || b1.innerHTML == "X" && b4.innerHTML == "X" && b7.innerHTML == "X" || b2.innerHTML == "X" && b5.innerHTML == "X" && b8.innerHTML == "X" || b3.innerHTML == "X" && b6.innerHTML == "X" && b9.innerHTML == "X" || b3.innerHTML == "X" && b5.innerHTML == "X" && b7.innerHTML == "X")    {
+			
+			return true;
+		}
+	}
+	function zerocheck() {
+		 if(b1.innerHTML!= "" && b2.innerHTML!= "" && b3.innerHTML!= "" && b1.innerHTML == "0" && b2.innerHTML == "0" && b3.innerHTML == "0" || b4.innerHTML!= "" && b5.innerHTML!= "" && b6.innerHTML!= "" && b4.innerHTML == "0" && b5.innerHTML == "0" && b6.innerHTML == "0" || b7.innerHTML!= "" && b8.innerHTML!= "" && b9.innerHTML!= "" && b7.innerHTML == "0" && b8.innerHTML == "0" && b9.innerHTML == "0" || b1.innerHTML == "0" && b5.innerHTML == "0" && b9.innerHTML == "0" || b1.innerHTML == "0" && b4.innerHTML == "0" && b7.innerHTML == "0" || b2.innerHTML == "0" && b5.innerHTML == "0" && b8.innerHTML == "0" || b3.innerHTML == "0" && b6.innerHTML == "0" && b9.innerHTML == "0" || b3.innerHTML == "0" && b5.innerHTML == "0" && b7.innerHTML == "0" ) {
+			return true;
+		}
+	}
+</script>
+</html>
